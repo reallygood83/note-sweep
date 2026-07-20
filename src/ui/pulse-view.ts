@@ -11,7 +11,7 @@ export class PulseView extends ItemView {
   private onRefresh: (() => Promise<void>) | null = null;
   private onOpenNote: ((path: string) => void) | null = null;
   private onDeleteNote: ((path: string) => void) | null = null;
-  private onUpdateInfo: ((path: string, title: string) => void) | null = null;
+  private onUpdateInfo: ((path: string) => void) | null = null;
 
   constructor(leaf: WorkspaceLeaf) {
     super(leaf);
@@ -34,7 +34,7 @@ export class PulseView extends ItemView {
     onRefresh: () => Promise<void>;
     onOpenNote: (path: string) => void;
     onDeleteNote: (path: string) => void;
-    onUpdateInfo: (path: string, title: string) => void;
+    onUpdateInfo: (path: string) => void;
   }): void {
     this.onStart = opts.onStart;
     this.onRefresh = opts.onRefresh;
@@ -137,7 +137,7 @@ export class PulseView extends ItemView {
       updateBtn.setAttr("title", t(L, "updateInfoTooltip"));
       updateBtn.onclick = (e) => {
         e.stopPropagation();
-        this.onUpdateInfo?.(n.path, n.title);
+        this.onUpdateInfo?.(n.path);
       };
 
       const delBtn = actions.createEl("button", {

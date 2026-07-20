@@ -23,8 +23,7 @@ import {
 } from "./types";
 import { SessionModal, type SessionAction } from "./ui/session-modal";
 import { PULSE_VIEW_TYPE, PulseView } from "./ui/pulse-view";
-import { UpdateInfoModal } from "./ui/update-info-modal";
-import { runInfoUpdate } from "./obsigravity-bridge";
+import { openNoteInObsigravity } from "./obsigravity-bridge";
 import { archiveTargetPath } from "./utils/paths";
 import { addDaysIso, todayKey } from "./utils/text";
 
@@ -79,7 +78,7 @@ export default class VaultPulsePlugin extends Plugin {
         },
         onOpenNote: (path) => void this.openNotePath(path),
         onDeleteNote: (path) => void this.deleteNotePath(path),
-        onUpdateInfo: (path, title) => this.openUpdateInfoModal(path, title),
+        onUpdateInfo: (path) => void this.openInObsigravity(path),
       });
       return view;
     });
@@ -280,16 +279,9 @@ export default class VaultPulsePlugin extends Plugin {
     }
   }
 
-  private openUpdateInfoModal(path: string, title: string): void {
-    const L = this.settings.locale;
-    new UpdateInfoModal(this.app, {
-      locale: L,
-      noteTitle: title,
-      notePath: path,
-      onSubmit: (prompt) => {
-        void runInfoUpdate(this.app, L, path, prompt);
-      },
-    }).open();
+  /** Open note + Obsigravity sidebar (no intermediate prompt modal). */
+  private async openInObsigravity(path: string): Promise<void> {
+    await openNoteInObsigravity(this.app, this.settings.locale, path);
   }
 
   async activateView(): Promise<void> {

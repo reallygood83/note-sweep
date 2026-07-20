@@ -6,18 +6,18 @@ const BRAT_URL = "https://github.com/TfTHacker/obsidian42-brat";
 const OBSIGRAVITY_REPO = "https://github.com/reallygood83/obsigravity";
 
 interface ObsigravityPluginLike {
-  startNoteUpdateFromPulse?: (
-    notePath: string,
-    userPrompt: string
-  ) => Promise<void>;
-  queuePulseUpdate?: (path: string, prompt: string) => void;
   activateView?: () => Promise<void>;
+  pinNote?: (path: string) => Promise<void>;
+  lastActiveMarkdownFile?: TFile | null;
 }
 
 function getObsigravity(app: App): ObsigravityPluginLike | null {
   const plugins = (
     app as unknown as {
-      plugins?: { getPlugin?: (id: string) => unknown; plugins?: Record<string, unknown> };
+      plugins?: {
+        getPlugin?: (id: string) => unknown;
+        plugins?: Record<string, unknown>;
+      };
     }
   ).plugins;
   if (!plugins) return null;
@@ -28,79 +28,57 @@ function getObsigravity(app: App): ObsigravityPluginLike | null {
   return p ?? null;
 }
 
-export function isObsigravityInstalled(app: App): boolean {
-  return getObsigravity(app) != null;
-}
-
 export function showObsigravityInstallGuide(locale: PulseLocale): void {
   new Notice(t(locale, "obsigravityMissing"), 12000);
-  // Also log install steps for console / support
   console.info(
     `[Vault Pulse] Install Obsigravity via BRAT:\n1) Install BRAT: ${BRAT_URL}\n2) Add plugin: reallygood83/obsigravity\n3) Repo: ${OBSIGRAVITY_REPO}`
   );
 }
 
 /**
- * P1 soft + P2 hard bridge.
- * Prefer public API startNoteUpdateFromPulse; fall back to open note + command + notice.
+ * Simple handoff: open the queue note as active, then open Obsigravity.
+ * User types the request in Obsigravity chat (no Pulse prompt modal).
  */
-export async function runInfoUpdate(
+export async function openNoteInObsigravity(
   app: App,
   locale: PulseLocale,
-  notePath: string,
-  userPrompt: string
+  notePath: string
 ): Promise<void> {
+  const file = app.vault.getAbstractFileByPath(notePath);
+  if (!(file instanceof TFile)) {
+    new Notice(t(locale, "deleteFailed"));
+    return;
+  }
+
+  // 1) Open exact note in editor (active)
+  await app.workspace.getLeaf(false).openFile(file, { active: true });
+
   const og = getObsigravity(app);
   if (!og) {
     showObsigravityInstallGuide(locale);
-    // Still open the note so user can work manually
-    const file = app.vault.getAbstractFileByPath(notePath);
-    if (file instanceof TFile) {
-      await app.workspace.getLeaf(false).openFile(file);
-    }
     return;
   }
 
-  // Always open the exact path first so the editor leaf matches Pulse context
-  const target = app.vault.getAbstractFileByPath(notePath);
-  if (target instanceof TFile) {
-    await app.workspace.getLeaf(false).openFile(target, { active: true });
-  }
-
-  if (typeof og.startNoteUpdateFromPulse === "function") {
-    try {
-      await og.startNoteUpdateFromPulse(notePath, userPrompt);
-      new Notice(t(locale, "obsigravityStarted"), 6000);
-    } catch (e) {
-      console.error("[Vault Pulse] Obsigravity update failed", e);
-      new Notice(t(locale, "obsigravityUpdateFailed"), 8000);
-    }
-    return;
-  }
-
-  // Soft fallback for older Obsigravity
+  // 2) Best-effort pin so Obsigravity context chips show this note
   try {
-    if (typeof og.queuePulseUpdate === "function") {
-      og.queuePulseUpdate(notePath, userPrompt);
+    if (typeof og.pinNote === "function") {
+      await og.pinNote(notePath.replace(/\\/g, "/"));
     }
-    const file = app.vault.getAbstractFileByPath(notePath);
-    if (file instanceof TFile) {
-      await app.workspace.getLeaf(false).openFile(file);
-    }
+  } catch (e) {
+    console.warn("[Vault Pulse] pinNote failed", e);
+  }
+
+  // 3) Open Obsigravity sidebar
+  try {
     if (typeof og.activateView === "function") {
       await og.activateView();
+    } else {
+      // @ts-expect-error command API
+      await app.commands.executeCommandById("obsigravity:open-obsigravity");
     }
-    try {
-      // @ts-expect-error Obsidian command API
-      await app.commands.executeCommandById(
-        "obsigravity:update-note-from-pulse"
-      );
-    } catch {
-      /* command may be missing on older builds */
-    }
-    new Notice(t(locale, "obsigravitySoftHandoff"), 8000);
+    new Notice(t(locale, "obsigravityOpened"), 6000);
   } catch (e) {
-    console.error("[Vault Pulse] Obsigravity soft handoff failed", e);
+    console.error("[Vault Pulse] open Obsigravity failed", e);
     new Notice(t(locale, "obsigravityUpdateFailed"), 8000);
   }
 }

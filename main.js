@@ -27,7 +27,7 @@ __export(main_exports, {
   default: () => VaultPulsePlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian7 = require("obsidian");
+var import_obsidian6 = require("obsidian");
 
 // src/index/vault-index.ts
 var import_obsidian = require("obsidian");
@@ -274,20 +274,12 @@ var en = {
   deleteConfirm: "Move this note to trash?\n{path}",
   deleted: "Moved to trash: {path}",
   deleteFailed: "Could not delete note.",
-  updateInfo: "Update info",
-  updateInfoTooltip: "Update this note with Obsigravity (prompt first)",
-  updateInfoTitle: "Update note with Obsigravity",
-  updateInfoNote: "Note: {title}",
-  updateInfoHint: "Describe what to update. Obsigravity will read the note and apply your request (Note Surgeon). Install via BRAT: reallygood83/obsigravity if missing.",
-  updateInfoPrompt: "Your request",
-  updateInfoPromptDesc: "What should change in this note?",
-  updateInfoPlaceholder: "e.g. Refresh outdated facts, clarify structure, add missing tags and links\u2026",
-  updateInfoRun: "Run update",
+  updateInfo: "Obsigravity",
+  updateInfoTooltip: "Open this note and Obsigravity. Type your request in the Obsigravity chat.",
   cancel: "Cancel",
   obsigravityMissing: "Obsigravity is not installed. Install BRAT, then add reallygood83/obsigravity. Opening the note only.",
-  obsigravitySoftHandoff: "Opened note + Obsigravity. Run /note-surgeon with your request if auto-start did not fire.",
-  obsigravityUpdateFailed: "Obsigravity update failed. The note was opened so you can retry from Obsigravity (/note-surgeon).",
-  obsigravityStarted: "Obsigravity Note Surgeon started for this note. Watch the Obsigravity panel.",
+  obsigravityUpdateFailed: "Could not open Obsigravity. Note was opened.",
+  obsigravityOpened: "Note opened + Obsigravity. Type your request in the chat (e.g. /note-surgeon \uAD6C\uC870 \uB2E4\uB4EC\uC5B4\uC918).",
   next: "Next card",
   nextTooltip: "Done with this note for now \u2014 go to the next card (does not archive).",
   archive: "Archive",
@@ -351,7 +343,7 @@ var en = {
   cmdOpenView: "Open Pulse view",
   cmdRescan: "Rescan vault index",
   howToHeading: "How to use (simple)",
-  howToBody: "1) Rebuild queue \u2192 2) Click a card to open \xB7 Delete \xB7 Update info (Obsigravity) \u2192 3) Or Start session for timed triage. Closing session \xD7 only hides the panel."
+  howToBody: "1) Rebuild queue \u2192 2) Click a card to open \xB7 Delete \xB7 Obsigravity (opens note + chat) \u2192 3) Type your request in Obsigravity. Or Start session for timed triage."
 };
 var ko = {
   pluginName: "Vault Pulse",
@@ -373,20 +365,12 @@ var ko = {
   deleteConfirm: "\uC774 \uB178\uD2B8\uB97C \uD734\uC9C0\uD1B5\uC73C\uB85C \uBCF4\uB0BC\uAE4C\uC694?\n{path}",
   deleted: "\uD734\uC9C0\uD1B5\uC73C\uB85C \uC774\uB3D9: {path}",
   deleteFailed: "\uB178\uD2B8\uB97C \uC0AD\uC81C\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.",
-  updateInfo: "\uC815\uBCF4 \uC5C5\uB370\uC774\uD2B8",
-  updateInfoTooltip: "Obsigravity\uB85C \uB178\uD2B8 \uC815\uBCF4 \uC5C5\uB370\uC774\uD2B8 (\uBA3C\uC800 \uC694\uCCAD \uC785\uB825)",
-  updateInfoTitle: "Obsigravity\uB85C \uC815\uBCF4 \uC5C5\uB370\uC774\uD2B8",
-  updateInfoNote: "\uB300\uC0C1 \uB178\uD2B8: {title}",
-  updateInfoHint: "\uBB34\uC5C7\uC744 \uBC14\uAFC0\uC9C0 \uC801\uC5B4 \uC8FC\uC138\uC694. Obsigravity\uAC00 \uB178\uD2B8\uB97C \uC77D\uACE0 \uC694\uCCAD\uC5D0 \uB9DE\uAC8C \uC218\uC815\uD569\uB2C8\uB2E4(Note Surgeon). \uC5C6\uC73C\uBA74 BRAT\uB85C reallygood83/obsigravity \uC124\uCE58.",
-  updateInfoPrompt: "\uC694\uCCAD \uB0B4\uC6A9",
-  updateInfoPromptDesc: "\uC774 \uB178\uD2B8\uC5D0 \uC5B4\uB5A4 \uC5C5\uB370\uC774\uD2B8\uB97C \uC6D0\uD558\uB098\uC694?",
-  updateInfoPlaceholder: "\uC608: \uC624\uB798\uB41C \uC0AC\uC2E4 \uC815\uB9AC, \uAD6C\uC870 \uB2E4\uB4EC\uAE30, \uD0DC\uADF8\xB7\uB9C1\uD06C \uBCF4\uAC15\u2026",
-  updateInfoRun: "\uC5C5\uB370\uC774\uD2B8 \uC2E4\uD589",
+  updateInfo: "Obsigravity",
+  updateInfoTooltip: "\uC774 \uB178\uD2B8\uB97C \uC5F4\uACE0 Obsigravity\uB97C \uCF2D\uB2C8\uB2E4. \uC694\uCCAD\uC740 Obsigravity \uCC44\uD305\uC5D0 \uC9C1\uC811 \uC785\uB825\uD558\uC138\uC694.",
   cancel: "\uCDE8\uC18C",
   obsigravityMissing: "Obsigravity\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4. BRAT \uC124\uCE58 \uD6C4 reallygood83/obsigravity \uB97C \uCD94\uAC00\uD558\uC138\uC694. \uB178\uD2B8\uB9CC \uC5FD\uB2C8\uB2E4.",
-  obsigravitySoftHandoff: "\uB178\uD2B8\uC640 Obsigravity\uB97C \uC5F4\uC5C8\uC2B5\uB2C8\uB2E4. \uC790\uB3D9 \uC2E4\uD589\uC774 \uC548 \uB418\uBA74 /note-surgeon \uC73C\uB85C \uC694\uCCAD\uC744 \uBCF4\uB0B4\uC138\uC694.",
-  obsigravityUpdateFailed: "Obsigravity \uC5C5\uB370\uC774\uD2B8\uC5D0 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4. \uB178\uD2B8\uB97C \uC5F4\uC5C8\uC73C\uB2C8 Obsigravity\uC5D0\uC11C /note-surgeon \uC73C\uB85C \uB2E4\uC2DC \uC2DC\uB3C4\uD574 \uBCF4\uC138\uC694.",
-  obsigravityStarted: "\uC774 \uB178\uD2B8\uC5D0 \uB300\uD574 Obsigravity Note Surgeon\uC744 \uC2DC\uC791\uD588\uC2B5\uB2C8\uB2E4. \uC624\uB978\uCABD Obsigravity \uD328\uB110\uC744 \uD655\uC778\uD558\uC138\uC694.",
+  obsigravityUpdateFailed: "Obsigravity\uB97C \uC5F4\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uB178\uD2B8\uB294 \uC5F4\uC5C8\uC2B5\uB2C8\uB2E4.",
+  obsigravityOpened: "\uB178\uD2B8 + Obsigravity \uC5F4\uB9BC. \uCC44\uD305\uC5D0 \uC694\uCCAD\uC744 \uC785\uB825\uD558\uC138\uC694 (\uC608: /note-surgeon \uAD6C\uC870 \uB2E4\uB4EC\uC5B4\uC918).",
   next: "\uB2E4\uC74C \uCE74\uB4DC",
   nextTooltip: "\uC774 \uB178\uD2B8\uB294 \uC77C\uB2E8 \uB05D \u2014 \uB2E4\uC74C \uCE74\uB4DC\uB85C (\uBCF4\uAD00\uD558\uC9C0 \uC54A\uC74C).",
   archive: "\uBCF4\uAD00",
@@ -450,7 +434,7 @@ var ko = {
   cmdOpenView: "Pulse \uBCF4\uAE30 \uC5F4\uAE30",
   cmdRescan: "vault \uC778\uB371\uC2A4 \uB2E4\uC2DC \uC2A4\uCE94",
   howToHeading: "\uC0AC\uC6A9\uBC95 (\uAC04\uB2E8)",
-  howToBody: "1) \uD050 \uB2E4\uC2DC \uB9CC\uB4E4\uAE30 \u2192 2) \uCE74\uB4DC \uD074\uB9AD\uC73C\uB85C \uC5F4\uAE30 \xB7 \uC0AD\uC81C \xB7 \uC815\uBCF4 \uC5C5\uB370\uC774\uD2B8(Obsigravity) \u2192 3) \uB610\uB294 \uC138\uC158 \uC2DC\uC791\uC73C\uB85C \uD0C0\uC774\uBA38 \uC815\uB9AC. \uC138\uC158 \xD7 \uB294 \uD328\uB110\uB9CC \uC228\uAE41\uB2C8\uB2E4."
+  howToBody: "1) \uD050 \uB2E4\uC2DC \uB9CC\uB4E4\uAE30 \u2192 2) \uCE74\uB4DC \uD074\uB9AD\uC73C\uB85C \uC5F4\uAE30 \xB7 \uC0AD\uC81C \xB7 Obsigravity(\uB178\uD2B8+\uCC44\uD305 \uC5F4\uAE30) \u2192 3) Obsigravity \uCC44\uD305\uC5D0 \uC694\uCCAD \uC785\uB825. \uB610\uB294 \uC138\uC158 \uC2DC\uC791\uC73C\uB85C \uD0C0\uC774\uBA38 \uC815\uB9AC."
 };
 var TABLES = { en, ko };
 function t(locale, key, vars) {
@@ -1084,7 +1068,7 @@ var PulseView = class extends import_obsidian4.ItemView {
       updateBtn.setAttr("title", t(L, "updateInfoTooltip"));
       updateBtn.onclick = (e) => {
         e.stopPropagation();
-        this.onUpdateInfo?.(n.path, n.title);
+        this.onUpdateInfo?.(n.path);
       };
       const delBtn = actions.createEl("button", {
         text: t(L, "delete"),
@@ -1099,65 +1083,8 @@ var PulseView = class extends import_obsidian4.ItemView {
   }
 };
 
-// src/ui/update-info-modal.ts
-var import_obsidian5 = require("obsidian");
-var UpdateInfoModal = class extends import_obsidian5.Modal {
-  constructor(app, opts) {
-    super(app);
-    this.input = "";
-    this.locale = opts.locale;
-    this.noteTitle = opts.noteTitle;
-    this.notePath = opts.notePath;
-    this.onSubmit = opts.onSubmit;
-  }
-  onOpen() {
-    const { contentEl } = this;
-    const L = this.locale;
-    contentEl.empty();
-    contentEl.addClass("pulse-update-modal");
-    contentEl.createEl("h2", { text: t(L, "updateInfoTitle") });
-    contentEl.createEl("p", {
-      cls: "pulse-muted",
-      text: t(L, "updateInfoNote", { title: this.noteTitle })
-    });
-    contentEl.createEl("p", {
-      cls: "pulse-path",
-      text: this.notePath
-    });
-    contentEl.createEl("p", {
-      cls: "pulse-muted",
-      text: t(L, "updateInfoHint")
-    });
-    let area = null;
-    new import_obsidian5.Setting(contentEl).setName(t(L, "updateInfoPrompt")).setDesc(t(L, "updateInfoPromptDesc")).addTextArea((ta) => {
-      area = ta;
-      ta.setPlaceholder(t(L, "updateInfoPlaceholder"));
-      ta.inputEl.rows = 6;
-      ta.inputEl.style.width = "100%";
-      ta.onChange((v) => {
-        this.input = v;
-      });
-    });
-    new import_obsidian5.Setting(contentEl).addButton(
-      (b) => b.setButtonText(t(L, "cancel")).onClick(() => this.close())
-    ).addButton(
-      (b) => b.setButtonText(t(L, "updateInfoRun")).setCta().onClick(() => {
-        const text = this.input.trim() || area?.getValue().trim() || "";
-        if (!text) {
-          return;
-        }
-        this.close();
-        this.onSubmit(text);
-      })
-    );
-  }
-  onClose() {
-    this.contentEl.empty();
-  }
-};
-
 // src/obsigravity-bridge.ts
-var import_obsidian6 = require("obsidian");
+var import_obsidian5 = require("obsidian");
 var OBSIGRAVITY_ID = "obsigravity";
 var BRAT_URL = "https://github.com/TfTHacker/obsidian42-brat";
 var OBSIGRAVITY_REPO = "https://github.com/reallygood83/obsigravity";
@@ -1168,7 +1095,7 @@ function getObsigravity(app) {
   return p ?? null;
 }
 function showObsigravityInstallGuide(locale) {
-  new import_obsidian6.Notice(t(locale, "obsigravityMissing"), 12e3);
+  new import_obsidian5.Notice(t(locale, "obsigravityMissing"), 12e3);
   console.info(
     `[Vault Pulse] Install Obsigravity via BRAT:
 1) Install BRAT: ${BRAT_URL}
@@ -1176,56 +1103,40 @@ function showObsigravityInstallGuide(locale) {
 3) Repo: ${OBSIGRAVITY_REPO}`
   );
 }
-async function runInfoUpdate(app, locale, notePath, userPrompt) {
+async function openNoteInObsigravity(app, locale, notePath) {
+  const file = app.vault.getAbstractFileByPath(notePath);
+  if (!(file instanceof import_obsidian5.TFile)) {
+    new import_obsidian5.Notice(t(locale, "deleteFailed"));
+    return;
+  }
+  await app.workspace.getLeaf(false).openFile(file, { active: true });
   const og = getObsigravity(app);
   if (!og) {
     showObsigravityInstallGuide(locale);
-    const file = app.vault.getAbstractFileByPath(notePath);
-    if (file instanceof import_obsidian6.TFile) {
-      await app.workspace.getLeaf(false).openFile(file);
-    }
-    return;
-  }
-  const target = app.vault.getAbstractFileByPath(notePath);
-  if (target instanceof import_obsidian6.TFile) {
-    await app.workspace.getLeaf(false).openFile(target, { active: true });
-  }
-  if (typeof og.startNoteUpdateFromPulse === "function") {
-    try {
-      await og.startNoteUpdateFromPulse(notePath, userPrompt);
-      new import_obsidian6.Notice(t(locale, "obsigravityStarted"), 6e3);
-    } catch (e) {
-      console.error("[Vault Pulse] Obsigravity update failed", e);
-      new import_obsidian6.Notice(t(locale, "obsigravityUpdateFailed"), 8e3);
-    }
     return;
   }
   try {
-    if (typeof og.queuePulseUpdate === "function") {
-      og.queuePulseUpdate(notePath, userPrompt);
+    if (typeof og.pinNote === "function") {
+      await og.pinNote(notePath.replace(/\\/g, "/"));
     }
-    const file = app.vault.getAbstractFileByPath(notePath);
-    if (file instanceof import_obsidian6.TFile) {
-      await app.workspace.getLeaf(false).openFile(file);
-    }
+  } catch (e) {
+    console.warn("[Vault Pulse] pinNote failed", e);
+  }
+  try {
     if (typeof og.activateView === "function") {
       await og.activateView();
+    } else {
+      await app.commands.executeCommandById("obsigravity:open-obsigravity");
     }
-    try {
-      await app.commands.executeCommandById(
-        "obsigravity:update-note-from-pulse"
-      );
-    } catch {
-    }
-    new import_obsidian6.Notice(t(locale, "obsigravitySoftHandoff"), 8e3);
+    new import_obsidian5.Notice(t(locale, "obsigravityOpened"), 6e3);
   } catch (e) {
-    console.error("[Vault Pulse] Obsigravity soft handoff failed", e);
-    new import_obsidian6.Notice(t(locale, "obsigravityUpdateFailed"), 8e3);
+    console.error("[Vault Pulse] open Obsigravity failed", e);
+    new import_obsidian5.Notice(t(locale, "obsigravityUpdateFailed"), 8e3);
   }
 }
 
 // src/main.ts
-var VaultPulsePlugin = class extends import_obsidian7.Plugin {
+var VaultPulsePlugin = class extends import_obsidian6.Plugin {
   constructor() {
     super(...arguments);
     this.settings = {
@@ -1270,7 +1181,7 @@ var VaultPulsePlugin = class extends import_obsidian7.Plugin {
         },
         onOpenNote: (path) => void this.openNotePath(path),
         onDeleteNote: (path) => void this.deleteNotePath(path),
-        onUpdateInfo: (path, title) => this.openUpdateInfoModal(path, title)
+        onUpdateInfo: (path) => void this.openInObsigravity(path)
       });
       return view;
     });
@@ -1317,10 +1228,10 @@ var VaultPulsePlugin = class extends import_obsidian7.Plugin {
       this.reschedule();
       if (shouldOfferCatchUpSession(this.settings)) {
         if (this.settings.scheduleAutoStart) {
-          new import_obsidian7.Notice(t(this.settings.locale, "catchUp"));
+          new import_obsidian6.Notice(t(this.settings.locale, "catchUp"));
           window.setTimeout(() => void this.startSession(), 600);
         } else {
-          new import_obsidian7.Notice(t(this.settings.locale, "catchUpManual"));
+          new import_obsidian6.Notice(t(this.settings.locale, "catchUpManual"));
         }
       }
     });
@@ -1382,18 +1293,18 @@ var VaultPulsePlugin = class extends import_obsidian7.Plugin {
     if (this.settings.lastSessionDate === todayKey() && this.settings.lastSessionCompleted) {
       return;
     }
-    new import_obsidian7.Notice(t(L, "scheduledTime"));
+    new import_obsidian6.Notice(t(L, "scheduledTime"));
     if (this.settings.scheduleAutoStart) {
       await this.startSession();
     }
   }
   async rescan() {
     const L = this.settings.locale;
-    new import_obsidian7.Notice(t(L, "scanning"));
+    new import_obsidian6.Notice(t(L, "scanning"));
     await this.index.fullRebuild();
     await this.rebuildQueue(false);
     this.refreshOpenViews();
-    new import_obsidian7.Notice(t(L, "scanComplete"));
+    new import_obsidian6.Notice(t(L, "scanComplete"));
   }
   async rebuildQueue(forceRescan) {
     if (forceRescan) await this.index.fullRebuild();
@@ -1421,39 +1332,32 @@ var VaultPulsePlugin = class extends import_obsidian7.Plugin {
   }
   async openNotePath(path) {
     const file = this.app.vault.getAbstractFileByPath(path);
-    if (file instanceof import_obsidian7.TFile) {
+    if (file instanceof import_obsidian6.TFile) {
       await this.app.workspace.getLeaf(false).openFile(file);
     }
   }
   async deleteNotePath(path) {
     const L = this.settings.locale;
     const file = this.app.vault.getAbstractFileByPath(path);
-    if (!(file instanceof import_obsidian7.TFile)) {
-      new import_obsidian7.Notice(t(L, "deleteFailed"));
+    if (!(file instanceof import_obsidian6.TFile)) {
+      new import_obsidian6.Notice(t(L, "deleteFailed"));
       return;
     }
     const ok = window.confirm(t(L, "deleteConfirm", { path }));
     if (!ok) return;
     try {
       await this.app.vault.trash(file, true);
-      new import_obsidian7.Notice(t(L, "deleted", { path }));
+      new import_obsidian6.Notice(t(L, "deleted", { path }));
       await this.rebuildQueue(true);
       this.refreshOpenViews();
     } catch (e) {
       console.error(e);
-      new import_obsidian7.Notice(t(L, "deleteFailed"));
+      new import_obsidian6.Notice(t(L, "deleteFailed"));
     }
   }
-  openUpdateInfoModal(path, title) {
-    const L = this.settings.locale;
-    new UpdateInfoModal(this.app, {
-      locale: L,
-      noteTitle: title,
-      notePath: path,
-      onSubmit: (prompt) => {
-        void runInfoUpdate(this.app, L, path, prompt);
-      }
-    }).open();
+  /** Open note + Obsigravity sidebar (no intermediate prompt modal). */
+  async openInObsigravity(path) {
+    await openNoteInObsigravity(this.app, this.settings.locale, path);
   }
   async activateView() {
     const { workspace } = this.app;
@@ -1479,7 +1383,7 @@ var VaultPulsePlugin = class extends import_obsidian7.Plugin {
     await this.rebuildQueue(false);
     const L = this.settings.locale;
     if (this.cachedQueue.length === 0) {
-      new import_obsidian7.Notice(t(L, "nothingToTriage"));
+      new import_obsidian6.Notice(t(L, "nothingToTriage"));
       return;
     }
     this.active = new ActiveSession(
@@ -1524,7 +1428,7 @@ var VaultPulsePlugin = class extends import_obsidian7.Plugin {
     this.modal = null;
     this.showStatusBar();
     const time = this.formatTime(this.active.remainingSec);
-    new import_obsidian7.Notice(t(this.settings.locale, "sessionPaused", { time }));
+    new import_obsidian6.Notice(t(this.settings.locale, "sessionPaused", { time }));
   }
   endActiveSession(auto) {
     if (!this.active) return;
@@ -1534,7 +1438,7 @@ var VaultPulsePlugin = class extends import_obsidian7.Plugin {
     this.active = null;
     this.modal = null;
     this.clearStatusBar();
-    if (auto) new import_obsidian7.Notice(t(this.settings.locale, "timeUp"));
+    if (auto) new import_obsidian6.Notice(t(this.settings.locale, "timeUp"));
     void this.finishSession(stats, completed);
   }
   formatTime(sec) {
@@ -1577,7 +1481,7 @@ var VaultPulsePlugin = class extends import_obsidian7.Plugin {
     if (!this.active) return;
     if (action === "open") {
       const file = this.app.vault.getAbstractFileByPath(note.path);
-      if (file instanceof import_obsidian7.TFile) {
+      if (file instanceof import_obsidian6.TFile) {
         await this.app.workspace.getLeaf(false).openFile(file);
       }
       this.active.markOpened();
@@ -1596,7 +1500,7 @@ var VaultPulsePlugin = class extends import_obsidian7.Plugin {
     if (action === "skip") return;
     if (action === "archive") {
       const file = this.app.vault.getAbstractFileByPath(note.path);
-      if (!(file instanceof import_obsidian7.TFile)) return;
+      if (!(file instanceof import_obsidian6.TFile)) return;
       const dest = archiveTargetPath(note.path, this.settings.archiveFolder);
       const folder = dest.slice(0, dest.lastIndexOf("/"));
       await this.ensureFolder(folder);
@@ -1607,7 +1511,7 @@ var VaultPulsePlugin = class extends import_obsidian7.Plugin {
         finalDest = `${folder}/${base}-${stamp}.md`;
       }
       await this.app.fileManager.renameFile(file, finalDest);
-      new import_obsidian7.Notice(t(L, "archived", { path: finalDest }));
+      new import_obsidian6.Notice(t(L, "archived", { path: finalDest }));
     }
   }
   async ensureFolder(path) {
@@ -1639,7 +1543,7 @@ var VaultPulsePlugin = class extends import_obsidian7.Plugin {
     await this.rebuildQueue(false);
     this.refreshOpenViews();
     const done = stats.opened + stats.archived + stats.snoozed + stats.skipped;
-    new import_obsidian7.Notice(
+    new import_obsidian6.Notice(
       t(this.settings.locale, "sessionDone", {
         done,
         target: stats.target,
