@@ -24,7 +24,7 @@ Mark each `PASS` / `FAIL` / `N/A` before release.
 
 ## Naming
 
-- [ ] Decision made per SPEC §13 (keep `obsidian-pulse` or rename to
+- [x] Decision made per SPEC §13 (keep `vault-pulse` or rename to
       `vault-pulse`) and applied consistently in `manifest.json` id/name,
       repo name, README, and package name
 

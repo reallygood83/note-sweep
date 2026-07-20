@@ -1,4 +1,4 @@
-# Vault Pulse (`obsidian-pulse`)
+# Vault Pulse (`vault-pulse`)
 
 **Local radar + daily triage habit for large Obsidian vaults.**
 
@@ -24,15 +24,15 @@ Vault Pulse scores notes with a **local rule engine** (no AI, no network) and ru
 
 ### From GitHub Release (recommended for testers)
 
-1. Download `main.js`, `manifest.json`, and `styles.css` from the [latest Release](https://github.com/reallygood83/obsidian-pulse/releases).
-2. Create folder `<vault>/.obsidian/plugins/obsidian-pulse/`.
+1. Download `main.js`, `manifest.json`, and `styles.css` from the [latest Release](https://github.com/reallygood83/vault-pulse/releases).
+2. Create folder `<vault>/.obsidian/plugins/vault-pulse/`.
 3. Copy the three files into that folder.
 4. Enable **Vault Pulse** in Settings → Community plugins.
 
 ### BRAT
 
 1. Install [BRAT](https://github.com/TfTHacker/obsidian42-brat).
-2. Add `reallygood83/obsidian-pulse`.
+2. Add `reallygood83/vault-pulse`.
 
 ### Community plugins
 

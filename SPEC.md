@@ -1,8 +1,8 @@
-# Obsidian Pulse (obsidian-pulse) — Product & Technical Spec
+# Vault Pulse (vault-pulse) — Product & Technical Spec
 
 **Version:** 0.1.0  
 **Author:** reallygood83  
-**Repo:** https://github.com/reallygood83/obsidian-pulse  
+**Repo:** https://github.com/reallygood83/vault-pulse  
 **Target:** Obsidian Community Plugin submission  
 **Language:** TypeScript (Obsidian plugin API). **No Python. No AI required for MVP.**
 
@@ -173,7 +173,7 @@ src/
 
 | Field | Requirement |
 |-------|-------------|
-| `id` | `obsidian-pulse` — lowercase, kebab-case, must match repo name, must not change after first release |
+| `id` | `vault-pulse` — lowercase, kebab-case, must match repo name, must not change after first release |
 | `name` | `Vault Pulse` — display name |
 | `version` | semver, no `v` prefix, must match the git release tag exactly |
 | `minAppVersion` | lowest Obsidian version using APIs we call (verify against actual API usage, don't guess) |
@@ -185,8 +185,8 @@ src/
 
 ⚠️ **Naming risk:** Obsidian's plugin review guidelines discourage using the word
 "Obsidian" in a plugin's `id`/`name` (it reads as official/redundant and can be
-rejected or require a rename during review). Current id `obsidian-pulse` and repo
-name `obsidian-pulse` both contain it. Decide before submitting the review PR:
+rejected or require a rename during review). Current id `vault-pulse` and repo
+name `vault-pulse` both contain it. Decide before submitting the review PR:
 keep as-is and accept possible reviewer pushback, or rename id/repo/display name
 (e.g. `vault-pulse`) before the first tagged release — **id cannot change after
 the plugin is accepted into the community list.**
@@ -319,14 +319,14 @@ Update on every release; do not delete old entries.
 ## 13. Naming
 
 - Plugin display name: **Vault Pulse**  
-- Plugin id: **obsidian-pulse**  
-- Package name: **obsidian-pulse**
+- Plugin id: **vault-pulse**  
+- Package name: **vault-pulse**
 
-⚠️ See §9.1 naming risk: id/repo name containing "obsidian" may draw reviewer
+✅ DECIDED (Option B): id/repo/package are `vault-pulse`. Display name remains **Vault Pulse**. Former provisional id `vault-pulse` (0.1.0) is superseded. ⚠️ Historical note only — id/repo name containing "obsidian" may draw reviewer
 pushback. This is an open decision, not yet resolved — pick one before the
 first tagged release since the id is immutable after community-list
 acceptance:
-- **Option A:** keep `obsidian-pulse` everywhere, accept review risk.
+- **Option A:** keep `vault-pulse` everywhere, accept review risk.
 - **Option B:** rename id/repo/package to `vault-pulse` (display name
   "Vault Pulse" stays either way) before first release.
 
