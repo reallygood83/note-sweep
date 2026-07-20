@@ -18,6 +18,28 @@ const en: Dict = {
     "Queue complete. Great work — end session or wait for the timer.",
   open: "Open",
   openTooltip: "Open the note to edit. Session stays active — click the status bar to return.",
+  clickToOpen: "Click to open this note",
+  delete: "Delete",
+  deleteTooltip: "Move note to trash (asks for confirmation)",
+  deleteConfirm: "Move this note to trash?\n{path}",
+  deleted: "Moved to trash: {path}",
+  deleteFailed: "Could not delete note.",
+  updateInfo: "Update info",
+  updateInfoTooltip: "Update this note with Obsigravity (prompt first)",
+  updateInfoTitle: "Update note with Obsigravity",
+  updateInfoNote: "Note: {title}",
+  updateInfoHint:
+    "Describe what to update. Obsigravity will read the note and apply your request (Note Surgeon). Install via BRAT: reallygood83/obsigravity if missing.",
+  updateInfoPrompt: "Your request",
+  updateInfoPromptDesc: "What should change in this note?",
+  updateInfoPlaceholder:
+    "e.g. Refresh outdated facts, clarify structure, add missing tags and links…",
+  updateInfoRun: "Run update",
+  cancel: "Cancel",
+  obsigravityMissing:
+    "Obsigravity is not installed. Install BRAT, then add reallygood83/obsigravity. Opening the note only.",
+  obsigravitySoftHandoff:
+    "Opened note + Obsigravity. Run /note-surgeon with your request if auto-start did not fire.",
   next: "Next card",
   nextTooltip: "Done with this note for now — go to the next card (does not archive).",
   archive: "Archive",
@@ -92,7 +114,7 @@ const en: Dict = {
   cmdRescan: "Rescan vault index",
   howToHeading: "How to use (simple)",
   howToBody:
-    "1) Rebuild queue → 2) Start session → 3) Open a note to edit (session stays alive) → 4) Return via status bar → 5) Archive / Snooze / Skip / Next. Closing × only hides the panel.",
+    "1) Rebuild queue → 2) Click a card to open · Delete · Update info (Obsigravity) → 3) Or Start session for timed triage. Closing session × only hides the panel.",
 };
 
 const ko: Dict = {
@@ -113,6 +135,28 @@ const ko: Dict = {
   open: "열기",
   openTooltip:
     "노트를 열어 수정합니다. 세션은 유지됩니다. 상태바의 Pulse를 누르면 돌아옵니다.",
+  clickToOpen: "클릭하면 노트가 열립니다",
+  delete: "삭제",
+  deleteTooltip: "노트를 휴지통으로 보냅니다 (확인 후)",
+  deleteConfirm: "이 노트를 휴지통으로 보낼까요?\n{path}",
+  deleted: "휴지통으로 이동: {path}",
+  deleteFailed: "노트를 삭제하지 못했습니다.",
+  updateInfo: "정보 업데이트",
+  updateInfoTooltip: "Obsigravity로 노트 정보 업데이트 (먼저 요청 입력)",
+  updateInfoTitle: "Obsigravity로 정보 업데이트",
+  updateInfoNote: "대상 노트: {title}",
+  updateInfoHint:
+    "무엇을 바꿀지 적어 주세요. Obsigravity가 노트를 읽고 요청에 맞게 수정합니다(Note Surgeon). 없으면 BRAT로 reallygood83/obsigravity 설치.",
+  updateInfoPrompt: "요청 내용",
+  updateInfoPromptDesc: "이 노트에 어떤 업데이트를 원하나요?",
+  updateInfoPlaceholder:
+    "예: 오래된 사실 정리, 구조 다듬기, 태그·링크 보강…",
+  updateInfoRun: "업데이트 실행",
+  cancel: "취소",
+  obsigravityMissing:
+    "Obsigravity가 없습니다. BRAT 설치 후 reallygood83/obsigravity 를 추가하세요. 노트만 엽니다.",
+  obsigravitySoftHandoff:
+    "노트와 Obsigravity를 열었습니다. 자동 실행이 안 되면 /note-surgeon 으로 요청을 보내세요.",
   next: "다음 카드",
   nextTooltip: "이 노트는 일단 끝 — 다음 카드로 (보관하지 않음).",
   archive: "보관",
@@ -188,7 +232,7 @@ const ko: Dict = {
   cmdRescan: "vault 인덱스 다시 스캔",
   howToHeading: "사용법 (간단)",
   howToBody:
-    "1) 큐 다시 만들기 → 2) 세션 시작 → 3) 「열기」로 노트 수정 (세션 유지) → 4) 상태바 Pulse로 복귀 → 5) 보관/나중에/건너뛰기/다음 카드. × 닫기는 패널만 숨깁니다.",
+    "1) 큐 다시 만들기 → 2) 카드 클릭으로 열기 · 삭제 · 정보 업데이트(Obsigravity) → 3) 또는 세션 시작으로 타이머 정리. 세션 × 는 패널만 숨깁니다.",
 };
 
 const TABLES: Record<PulseLocale, Dict> = { en, ko };

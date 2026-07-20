@@ -1,4 +1,4 @@
-import { ItemView, WorkspaceLeaf } from "obsidian";
+import { ItemView, Notice, WorkspaceLeaf } from "obsidian";
 import { t, type PulseLocale } from "../i18n";
 import type { ScoredNote } from "../types";
 
@@ -9,6 +9,9 @@ export class PulseView extends ItemView {
   private locale: PulseLocale = "en";
   private onStart: (() => void) | null = null;
   private onRefresh: (() => Promise<void>) | null = null;
+  private onOpenNote: ((path: string) => void) | null = null;
+  private onDeleteNote: ((path: string) => void) | null = null;
+  private onUpdateInfo: ((path: string, title: string) => void) | null = null;
 
   constructor(leaf: WorkspaceLeaf) {
     super(leaf);
@@ -29,9 +32,15 @@ export class PulseView extends ItemView {
   setHandlers(opts: {
     onStart: () => void;
     onRefresh: () => Promise<void>;
+    onOpenNote: (path: string) => void;
+    onDeleteNote: (path: string) => void;
+    onUpdateInfo: (path: string, title: string) => void;
   }): void {
     this.onStart = opts.onStart;
     this.onRefresh = opts.onRefresh;
+    this.onOpenNote = opts.onOpenNote;
+    this.onDeleteNote = opts.onDeleteNote;
+    this.onUpdateInfo = opts.onUpdateInfo;
   }
 
   setLocale(locale: PulseLocale): void {
@@ -82,13 +91,64 @@ export class PulseView extends ItemView {
     const list = root.createEl("ul", { cls: "pulse-queue-list" });
     for (const n of this.queue) {
       const li = list.createEl("li");
-      const title = li.createEl("div", { cls: "pulse-q-title", text: n.title });
+      li.addClass("pulse-queue-item");
+
+      const body = li.createDiv({ cls: "pulse-q-body" });
+      body.setAttr("role", "button");
+      body.setAttr("tabindex", "0");
+      body.setAttr("title", t(L, "clickToOpen"));
+      body.onclick = (e) => {
+        e.preventDefault();
+        this.onOpenNote?.(n.path);
+      };
+      body.onkeydown = (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          this.onOpenNote?.(n.path);
+        }
+      };
+
+      const title = body.createEl("div", {
+        cls: "pulse-q-title",
+        text: n.title,
+      });
       title.setAttr("title", n.path);
-      li.createEl("div", { cls: "pulse-q-explain", text: n.explain });
-      li.createEl("div", {
+      body.createEl("div", { cls: "pulse-q-explain", text: n.explain });
+      body.createEl("div", {
         cls: "pulse-q-score",
         text: `${t(L, "score")} ${n.score.toFixed(1)}`,
       });
+
+      const actions = li.createDiv({ cls: "pulse-q-actions" });
+
+      const openBtn = actions.createEl("button", {
+        text: t(L, "open"),
+        cls: "pulse-mini-btn",
+      });
+      openBtn.onclick = (e) => {
+        e.stopPropagation();
+        this.onOpenNote?.(n.path);
+      };
+
+      const updateBtn = actions.createEl("button", {
+        text: t(L, "updateInfo"),
+        cls: "pulse-mini-btn mod-cta",
+      });
+      updateBtn.setAttr("title", t(L, "updateInfoTooltip"));
+      updateBtn.onclick = (e) => {
+        e.stopPropagation();
+        this.onUpdateInfo?.(n.path, n.title);
+      };
+
+      const delBtn = actions.createEl("button", {
+        text: t(L, "delete"),
+        cls: "pulse-mini-btn pulse-danger",
+      });
+      delBtn.setAttr("title", t(L, "deleteTooltip"));
+      delBtn.onclick = (e) => {
+        e.stopPropagation();
+        this.onDeleteNote?.(n.path);
+      };
     }
   }
 }

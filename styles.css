@@ -98,3 +98,41 @@
   opacity: 1;
   text-decoration: underline;
 }
+
+.pulse-queue-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pulse-q-body {
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.pulse-q-body:hover {
+  background: var(--background-modifier-hover);
+}
+
+.pulse-q-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pulse-mini-btn {
+  font-size: 0.8em;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pulse-mini-btn.pulse-danger {
+  color: var(--text-error);
+}
+
+.pulse-update-modal textarea {
+  width: 100%;
+  min-height: 120px;
+}

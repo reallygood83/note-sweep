@@ -23,6 +23,8 @@ import {
 } from "./types";
 import { SessionModal, type SessionAction } from "./ui/session-modal";
 import { PULSE_VIEW_TYPE, PulseView } from "./ui/pulse-view";
+import { UpdateInfoModal } from "./ui/update-info-modal";
+import { runInfoUpdate } from "./obsigravity-bridge";
 import { archiveTargetPath } from "./utils/paths";
 import { addDaysIso, todayKey } from "./utils/text";
 
@@ -75,6 +77,9 @@ export default class VaultPulsePlugin extends Plugin {
           await this.rebuildQueue(true);
           this.refreshOpenViews();
         },
+        onOpenNote: (path) => void this.openNotePath(path),
+        onDeleteNote: (path) => void this.deleteNotePath(path),
+        onUpdateInfo: (path, title) => this.openUpdateInfoModal(path, title),
       });
       return view;
     });
@@ -241,6 +246,45 @@ export default class VaultPulsePlugin extends Plugin {
         v.setQueue(this.cachedQueue);
       }
     }
+  }
+
+  private async openNotePath(path: string): Promise<void> {
+    const file = this.app.vault.getAbstractFileByPath(path);
+    if (file instanceof TFile) {
+      await this.app.workspace.getLeaf(false).openFile(file);
+    }
+  }
+
+  private async deleteNotePath(path: string): Promise<void> {
+    const L = this.settings.locale;
+    const file = this.app.vault.getAbstractFileByPath(path);
+    if (!(file instanceof TFile)) {
+      new Notice(t(L, "deleteFailed"));
+      return;
+    }
+    const ok = window.confirm(t(L, "deleteConfirm", { path }));
+    if (!ok) return;
+    try {
+      await this.app.vault.trash(file, true);
+      new Notice(t(L, "deleted", { path }));
+      await this.rebuildQueue(true);
+      this.refreshOpenViews();
+    } catch (e) {
+      console.error(e);
+      new Notice(t(L, "deleteFailed"));
+    }
+  }
+
+  private openUpdateInfoModal(path: string, title: string): void {
+    const L = this.settings.locale;
+    new UpdateInfoModal(this.app, {
+      locale: L,
+      noteTitle: title,
+      notePath: path,
+      onSubmit: (prompt) => {
+        void runInfoUpdate(this.app, L, path, prompt);
+      },
+    }).open();
   }
 
   async activateView(): Promise<void> {
