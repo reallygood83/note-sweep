@@ -31,7 +31,7 @@ function getObsigravity(app: App): ObsigravityPluginLike | null {
 export function showObsigravityInstallGuide(locale: PulseLocale): void {
   new Notice(t(locale, "obsigravityMissing"), 12000);
   console.info(
-    `[Vault Pulse] Install Obsigravity via BRAT:\n1) Install BRAT: ${BRAT_URL}\n2) Add plugin: reallygood83/obsigravity\n3) Repo: ${OBSIGRAVITY_REPO}`
+    `[Note Sweep] Install Obsigravity via BRAT:\n1) Install BRAT: ${BRAT_URL}\n2) Add plugin: reallygood83/obsigravity\n3) Repo: ${OBSIGRAVITY_REPO}`
   );
 }
 
@@ -65,7 +65,7 @@ export async function openNoteInObsigravity(
       await og.pinNote(notePath.replace(/\\/g, "/"));
     }
   } catch (e) {
-    console.warn("[Vault Pulse] pinNote failed", e);
+    console.warn("[Note Sweep] pinNote failed", e);
   }
 
   // 3) Open Obsigravity sidebar
@@ -78,7 +78,7 @@ export async function openNoteInObsigravity(
     }
     new Notice(t(locale, "obsigravityOpened"), 6000);
   } catch (e) {
-    console.error("[Vault Pulse] open Obsigravity failed", e);
+    console.error("[Note Sweep] open Obsigravity failed", e);
     new Notice(t(locale, "obsigravityUpdateFailed"), 8000);
   }
 }

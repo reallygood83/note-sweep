@@ -1,4 +1,4 @@
-# Vault Pulse — Community Plugin Review Checklist
+# Note Sweep — Community Plugin Review Checklist
 
 Pass/fail checklist for reviewing a build before tagging a release or opening
 the `obsidian-releases` community-plugins.json PR. Mirrors what Obsidian
@@ -24,9 +24,9 @@ Mark each `PASS` / `FAIL` / `N/A` before release.
 
 ## Naming
 
-- [x] Decision made per SPEC §13 (keep `vault-pulse` or rename to
-      `vault-pulse`) and applied consistently in `manifest.json` id/name,
-      repo name, README, and package name
+- [x] Naming decided per SPEC §13: id/repo/package `note-sweep`,
+      display name **Note Sweep** — applied in `manifest.json`, repo name,
+      README, and package name
 
 ## Build & release assets
 

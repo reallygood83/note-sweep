@@ -32,7 +32,7 @@ interface PluginData {
   index: PulseIndexData | null;
 }
 
-export default class VaultPulsePlugin extends Plugin {
+export default class NoteSweepPlugin extends Plugin {
   settings: PulseSettings = {
     ...DEFAULT_SETTINGS,
     weights: { ...DEFAULT_SETTINGS.weights },
@@ -83,7 +83,7 @@ export default class VaultPulsePlugin extends Plugin {
       return view;
     });
 
-    this.addRibbonIcon("activity", "Vault Pulse", () => {
+    this.addRibbonIcon("activity", "Note Sweep", () => {
       if (this.active && !this.active.ended) {
         this.resumeSession();
       } else {

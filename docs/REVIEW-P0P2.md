@@ -1,4 +1,4 @@
-# Review: Vault Pulse 0.3.0 — P0–P2 UX
+# Review: Note Sweep 0.3.0 — P0–P2 UX
 
 Reviewed commit: `5d2270c` (feat: queue click-open, delete, Obsigravity info-update) on `main`, merged into this branch by fast-forward.
 Method: source read (`src/ui/pulse-view.ts`, `src/main.ts`, `src/ui/update-info-modal.ts`, `src/obsigravity-bridge.ts`, `src/ui/session-modal.ts`, `src/session/active-session.ts`, `styles.css`, `src/i18n.ts`) + `tsc -noEmit` + production build diff check. No Obsidian runtime available in this environment, so this is a static/code review, not an in-app manual test.
@@ -49,14 +49,14 @@ if (typeof og.startNoteUpdateFromPulse === "function") {
   return;
 }
 ```
-If Obsigravity is installed but `startNoteUpdateFromPulse` throws (network error, malformed note, internal Obsigravity exception, etc.), the rejection is never caught — `void runInfoUpdate(...)` discards the promise, so the failure becomes a silent unhandled rejection. The user sees the modal close and nothing else happens: no error notice, no console context from Vault Pulse's side, no indication their prompt wasn't applied. This is the one path in the whole flow that violates "never silently swallow errors" — every other failure branch here (missing plugin, empty input, delete failure) does show a `Notice`.
+If Obsigravity is installed but `startNoteUpdateFromPulse` throws (network error, malformed note, internal Obsigravity exception, etc.), the rejection is never caught — `void runInfoUpdate(...)` discards the promise, so the failure becomes a silent unhandled rejection. The user sees the modal close and nothing else happens: no error notice, no console context from Note Sweep's side, no indication their prompt wasn't applied. This is the one path in the whole flow that violates "never silently swallow errors" — every other failure branch here (missing plugin, empty input, delete failure) does show a `Notice`.
 
 Suggested fix (small, contained to `runInfoUpdate`):
 ```ts
 try {
   await og.startNoteUpdateFromPulse(notePath, userPrompt);
 } catch (e) {
-  console.error("[Vault Pulse] Obsigravity update failed", e);
+  console.error("[Note Sweep] Obsigravity update failed", e);
   new Notice(t(locale, "obsigravityUpdateFailed"), 8000); // new i18n key
 }
 ```

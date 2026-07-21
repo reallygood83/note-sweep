@@ -2,7 +2,7 @@ import { ItemView, Notice, WorkspaceLeaf } from "obsidian";
 import { t, type PulseLocale } from "../i18n";
 import type { ScoredNote } from "../types";
 
-export const PULSE_VIEW_TYPE = "vault-pulse-view";
+export const PULSE_VIEW_TYPE = "note-sweep-view";
 
 export class PulseView extends ItemView {
   private queue: ScoredNote[] = [];
@@ -22,7 +22,7 @@ export class PulseView extends ItemView {
   }
 
   getDisplayText(): string {
-    return "Vault Pulse";
+    return "Note Sweep";
   }
 
   getIcon(): string {

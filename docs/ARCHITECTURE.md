@@ -1,4 +1,4 @@
-# Vault Pulse — Architecture Notes
+# Note Sweep — Architecture Notes
 
 Short implementer reference. Full product/functional spec: `../SPEC.md`.
 

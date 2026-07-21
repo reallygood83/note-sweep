@@ -1,6 +1,6 @@
 {
-	"id": "vault-pulse",
-	"name": "Vault Pulse",
+	"id": "note-sweep",
+	"name": "Note Sweep",
 	"version": "0.3.3",
 	"minAppVersion": "1.5.0",
 	"description": "Local vault radar + triage. Open notes, trash, open Obsigravity chat. KO/EN. No AI.",

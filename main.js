@@ -24,7 +24,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/main.ts
 var main_exports = {};
 __export(main_exports, {
-  default: () => VaultPulsePlugin
+  default: () => NoteSweepPlugin
 });
 module.exports = __toCommonJS(main_exports);
 var import_obsidian6 = require("obsidian");
@@ -255,14 +255,14 @@ var VaultIndex = class {
 
 // src/i18n.ts
 var en = {
-  pluginName: "Vault Pulse",
+  pluginName: "Note Sweep",
   viewSubtitle: "Local radar for notes worth triaging. No AI. No network.",
   startSession: "Start session",
   rebuildQueue: "Rebuild queue",
   todayQueue: "Today's queue",
   emptyQueue: "No signals right now. Rescan after more notes age, or lower Stale days in settings.",
   score: "score",
-  sessionTitle: "Vault Pulse session",
+  sessionTitle: "Note Sweep session",
   remaining: "remaining",
   cardProgress: "Card {current} / {total} \xB7 processed {done}",
   queueComplete: "Queue complete. Great work \u2014 end session or wait for the timer.",
@@ -289,24 +289,24 @@ var en = {
   pauseSession: "Hide panel",
   pauseTooltip: "Hide this window. Timer keeps running. Resume from the status bar.",
   sessionHint: "Tip: Open a note to edit anytime. Closing \xD7 only hides this panel \u2014 it does NOT end the session. Use \u201CEnd session\u201D when finished.",
-  sessionPaused: "Pulse session paused ({time} left). Click the status bar \u201CPulse\u201D to resume.",
-  statusBarActive: "Pulse {time}",
-  statusBarPaused: "Pulse \xB7 resume {time}",
-  timeUp: "Pulse session time is up.",
-  actionFailed: "Pulse action failed. See console.",
-  cmdResume: "Resume Pulse session",
-  scanning: "Vault Pulse: scanning vault\u2026",
-  scanComplete: "Vault Pulse: scan complete.",
-  nothingToTriage: "Vault Pulse: nothing to triage right now.",
-  scheduledTime: "Vault Pulse: scheduled session starting.",
-  catchUp: "Vault Pulse: catch-up session available \u2014 starting now.",
-  catchUpManual: "Vault Pulse: catch-up session available. Run \u201CStart session\u201D.",
+  sessionPaused: "Note Sweep session paused ({time} left). Click the status bar \u201CSweep\u201D to resume.",
+  statusBarActive: "Sweep {time}",
+  statusBarPaused: "Sweep \xB7 resume {time}",
+  timeUp: "Note Sweep session time is up.",
+  actionFailed: "Note Sweep action failed. See console.",
+  cmdResume: "Resume Note Sweep session",
+  scanning: "Note Sweep: scanning vault\u2026",
+  scanComplete: "Note Sweep: scan complete.",
+  nothingToTriage: "Note Sweep: nothing to triage right now.",
+  scheduledTime: "Note Sweep: scheduled session starting.",
+  catchUp: "Note Sweep: catch-up session available \u2014 starting now.",
+  catchUpManual: "Note Sweep: catch-up session available. Run \u201CStart session\u201D.",
   archived: "Archived \u2192 {path}",
-  sessionDone: "Pulse done: {done}/{target} \xB7 open {opened} \xB7 archive {archived} \xB7 snooze {snoozed} \xB7 skip {skipped} \xB7 streak {streak}",
-  settingsTitle: "Vault Pulse",
+  sessionDone: "Sweep done: {done}/{target} \xB7 open {opened} \xB7 archive {archived} \xB7 snooze {snoozed} \xB7 skip {skipped} \xB7 streak {streak}",
+  settingsTitle: "Note Sweep",
   settingsIntro: "All processing is local. No AI. No network calls.",
   language: "Language",
-  languageDesc: "UI language for Vault Pulse (English / Korean).",
+  languageDesc: "UI language for Note Sweep (English / Korean).",
   staleDays: "Stale days",
   staleDaysDesc: "Notes not modified for at least this many days can be flagged stale.",
   sessionMinutes: "Session minutes",
@@ -323,7 +323,7 @@ var en = {
   maxPerFolderDesc: "Diversity cap so one folder does not fill the queue.",
   scheduleHeading: "Daily auto session",
   scheduleEnabled: "Enable daily auto session",
-  scheduleEnabledDesc: "When Obsidian is open at the set local time, start a Pulse session automatically. Catch-up on next launch if you missed it.",
+  scheduleEnabledDesc: "When Obsidian is open at the set local time, start a Note Sweep session automatically. Catch-up on next launch if you missed it.",
   scheduleTime: "Session time",
   scheduleTimeDesc: "Local 24h time, e.g. 21:00",
   scheduleAutoStart: "Auto-open session window",
@@ -339,26 +339,26 @@ var en = {
   signalDuplicate: "Duplicate",
   signalAvoidance: "Avoidance",
   rootFolder: "root",
-  cmdStart: "Start Pulse session",
-  cmdOpenView: "Open Pulse view",
+  cmdStart: "Start Note Sweep session",
+  cmdOpenView: "Open Note Sweep view",
   cmdRescan: "Rescan vault index",
   howToHeading: "How to use (simple)",
   howToBody: "1) Rebuild queue \u2192 2) Click a card to open \xB7 Delete \xB7 Obsigravity (opens note + chat) \u2192 3) Type your request in Obsigravity. Or Start session for timed triage."
 };
 var ko = {
-  pluginName: "Vault Pulse",
+  pluginName: "Note Sweep",
   viewSubtitle: "\uC190\uB308 \uB9CC\uD55C \uB178\uD2B8\uB97C \uACE8\uB77C \uC8FC\uB294 \uB85C\uCEEC \uB808\uC774\uB354\uC785\uB2C8\uB2E4. AI \uC5C6\uC74C \xB7 \uB124\uD2B8\uC6CC\uD06C \uC5C6\uC74C.",
   startSession: "\uC138\uC158 \uC2DC\uC791",
   rebuildQueue: "\uD050 \uB2E4\uC2DC \uB9CC\uB4E4\uAE30",
   todayQueue: "\uC624\uB298\uC758 \uD050",
   emptyQueue: "\uC9C0\uAE08 \uCD94\uCC9C\uD560 \uB178\uD2B8\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4. \uB178\uD2B8\uAC00 \uB354 \uC624\uB798\uB418\uAC70\uB098, \uC124\uC815\uC5D0\uC11C \u2018\uBC29\uCE58 \uC77C\uC218\u2019\uB97C \uB0AE\uCDB0 \uBCF4\uC138\uC694.",
   score: "\uC810\uC218",
-  sessionTitle: "Vault Pulse \uC138\uC158",
+  sessionTitle: "Note Sweep \uC138\uC158",
   remaining: "\uB0A8\uC74C",
   cardProgress: "\uCE74\uB4DC {current} / {total} \xB7 \uCC98\uB9AC {done}",
   queueComplete: "\uD050\uB97C \uBAA8\uB450 \uCC98\uB9AC\uD588\uC2B5\uB2C8\uB2E4. \uC138\uC158\uC744 \uB05D\uB0B4\uAC70\uB098 \uD0C0\uC774\uBA38\uAC00 \uB05D\uB0A0 \uB54C\uAE4C\uC9C0 \uAE30\uB2E4\uB824\uB3C4 \uB429\uB2C8\uB2E4.",
   open: "\uC5F4\uAE30",
-  openTooltip: "\uB178\uD2B8\uB97C \uC5F4\uC5B4 \uC218\uC815\uD569\uB2C8\uB2E4. \uC138\uC158\uC740 \uC720\uC9C0\uB429\uB2C8\uB2E4. \uC0C1\uD0DC\uBC14\uC758 Pulse\uB97C \uB204\uB974\uBA74 \uB3CC\uC544\uC635\uB2C8\uB2E4.",
+  openTooltip: "\uB178\uD2B8\uB97C \uC5F4\uC5B4 \uC218\uC815\uD569\uB2C8\uB2E4. \uC138\uC158\uC740 \uC720\uC9C0\uB429\uB2C8\uB2E4. \uC0C1\uD0DC\uBC14\uC758 Sweep\uC744 \uB204\uB974\uBA74 \uB3CC\uC544\uC635\uB2C8\uB2E4.",
   clickToOpen: "\uD074\uB9AD\uD558\uBA74 \uB178\uD2B8\uAC00 \uC5F4\uB9BD\uB2C8\uB2E4",
   delete: "\uC0AD\uC81C",
   deleteTooltip: "\uB178\uD2B8\uB97C \uD734\uC9C0\uD1B5\uC73C\uB85C \uBCF4\uB0C5\uB2C8\uB2E4 (\uD655\uC778 \uD6C4)",
@@ -380,24 +380,24 @@ var ko = {
   pauseSession: "\uD328\uB110 \uC228\uAE30\uAE30",
   pauseTooltip: "\uCC3D\uB9CC \uC228\uAE41\uB2C8\uB2E4. \uD0C0\uC774\uBA38\uB294 \uACC4\uC18D \uAC11\uB2C8\uB2E4. \uC0C1\uD0DC\uBC14\uC5D0\uC11C \uB2E4\uC2DC \uC5F4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.",
   sessionHint: "\uD301: \u300C\uC5F4\uAE30\u300D\uB85C \uB178\uD2B8\uB97C \uC218\uC815\uD558\uC138\uC694. \xD7 \uB85C \uB2EB\uC544\uB3C4 \uC138\uC158\uC740 \uB05D\uB098\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. \uB05D\uB0BC \uB54C\uB9CC \u300C\uC138\uC158 \uC885\uB8CC\u300D\uB97C \uB204\uB974\uC138\uC694.",
-  sessionPaused: "Pulse \uC138\uC158 \uC77C\uC2DC \uC228\uAE40 (\uB0A8\uC740 \uC2DC\uAC04 {time}). \uC0C1\uD0DC\uBC14\uC758 \u201CPulse\u201D\uB97C \uB20C\uB7EC \uC774\uC5B4\uC11C \uD558\uC138\uC694.",
-  statusBarActive: "Pulse {time}",
-  statusBarPaused: "Pulse \xB7 \uC774\uC5B4\uD558\uAE30 {time}",
-  timeUp: "Pulse \uC138\uC158 \uC2DC\uAC04\uC774 \uB05D\uB0AC\uC2B5\uB2C8\uB2E4.",
+  sessionPaused: "Note Sweep \uC138\uC158 \uC77C\uC2DC \uC228\uAE40 (\uB0A8\uC740 \uC2DC\uAC04 {time}). \uC0C1\uD0DC\uBC14\uC758 \u201CSweep\u201D\uC744 \uB20C\uB7EC \uC774\uC5B4\uC11C \uD558\uC138\uC694.",
+  statusBarActive: "Sweep {time}",
+  statusBarPaused: "Sweep \xB7 \uC774\uC5B4\uD558\uAE30 {time}",
+  timeUp: "Note Sweep \uC138\uC158 \uC2DC\uAC04\uC774 \uB05D\uB0AC\uC2B5\uB2C8\uB2E4.",
   actionFailed: "\uC791\uC5C5\uC5D0 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4. \uCF58\uC194\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.",
-  cmdResume: "Pulse \uC138\uC158 \uC774\uC5B4\uD558\uAE30",
-  scanning: "Vault Pulse: vault \uC2A4\uCE94 \uC911\u2026",
-  scanComplete: "Vault Pulse: \uC2A4\uCE94 \uC644\uB8CC.",
-  nothingToTriage: "Vault Pulse: \uC9C0\uAE08 \uC815\uB9AC\uD560 \uB178\uD2B8\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4.",
-  scheduledTime: "Vault Pulse: \uC608\uC57D \uC138\uC158\uC744 \uC2DC\uC791\uD569\uB2C8\uB2E4.",
-  catchUp: "Vault Pulse: \uB193\uCE5C \uC138\uC158\uC744 \uC9C0\uAE08 \uC2DC\uC791\uD569\uB2C8\uB2E4.",
-  catchUpManual: "Vault Pulse: \uB193\uCE5C \uC138\uC158\uC774 \uC788\uC2B5\uB2C8\uB2E4. \u300C\uC138\uC158 \uC2DC\uC791\u300D\uC744 \uB20C\uB7EC \uC8FC\uC138\uC694.",
+  cmdResume: "Note Sweep \uC138\uC158 \uC774\uC5B4\uD558\uAE30",
+  scanning: "Note Sweep: vault \uC2A4\uCE94 \uC911\u2026",
+  scanComplete: "Note Sweep: \uC2A4\uCE94 \uC644\uB8CC.",
+  nothingToTriage: "Note Sweep: \uC9C0\uAE08 \uC815\uB9AC\uD560 \uB178\uD2B8\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4.",
+  scheduledTime: "Note Sweep: \uC608\uC57D \uC138\uC158\uC744 \uC2DC\uC791\uD569\uB2C8\uB2E4.",
+  catchUp: "Note Sweep: \uB193\uCE5C \uC138\uC158\uC744 \uC9C0\uAE08 \uC2DC\uC791\uD569\uB2C8\uB2E4.",
+  catchUpManual: "Note Sweep: \uB193\uCE5C \uC138\uC158\uC774 \uC788\uC2B5\uB2C8\uB2E4. \u300C\uC138\uC158 \uC2DC\uC791\u300D\uC744 \uB20C\uB7EC \uC8FC\uC138\uC694.",
   archived: "\uBCF4\uAD00\uB428 \u2192 {path}",
   sessionDone: "\uC138\uC158 \uB05D: {done}/{target} \xB7 \uC5F4\uAE30 {opened} \xB7 \uBCF4\uAD00 {archived} \xB7 \uB098\uC911\uC5D0 {snoozed} \xB7 \uAC74\uB108\uB700 {skipped} \xB7 \uC5F0\uC18D {streak}\uC77C",
-  settingsTitle: "Vault Pulse",
+  settingsTitle: "Note Sweep",
   settingsIntro: "\uBAA8\uB4E0 \uCC98\uB9AC\uB294 \uB85C\uCEEC\uC5D0\uC11C\uB9CC \uD569\uB2C8\uB2E4. AI \uC5C6\uC74C \xB7 \uB124\uD2B8\uC6CC\uD06C \uD638\uCD9C \uC5C6\uC74C.",
   language: "\uC5B8\uC5B4",
-  languageDesc: "Vault Pulse \uD654\uBA74 \uC5B8\uC5B4 (\uC601\uC5B4 / \uD55C\uAD6D\uC5B4).",
+  languageDesc: "Note Sweep \uD654\uBA74 \uC5B8\uC5B4 (\uC601\uC5B4 / \uD55C\uAD6D\uC5B4).",
   staleDays: "\uBC29\uCE58 \uC77C\uC218",
   staleDaysDesc: "\uC774 \uC77C\uC218 \uC774\uC0C1 \uC218\uC815\uD558\uC9C0 \uC54A\uC740 \uB178\uD2B8\uB97C \u2018\uC624\uB798\uB428(Stale)\u2019\uC73C\uB85C \uBCFC \uC218 \uC788\uC2B5\uB2C8\uB2E4.",
   sessionMinutes: "\uC138\uC158 \uC2DC\uAC04(\uBD84)",
@@ -414,7 +414,7 @@ var ko = {
   maxPerFolderDesc: "\uD55C \uD3F4\uB354 \uB178\uD2B8\uAC00 \uD050\uB97C \uB3C5\uC2DD\uD558\uC9C0 \uC54A\uB3C4\uB85D \uD558\uB294 \uC0C1\uD55C.",
   scheduleHeading: "\uB9E4\uC77C \uC790\uB3D9 \uC138\uC158",
   scheduleEnabled: "\uB9E4\uC77C \uC790\uB3D9 \uC138\uC158 \uCF1C\uAE30",
-  scheduleEnabledDesc: "Obsidian\uC774 \uCF1C\uC838 \uC788\uACE0 \uC124\uC815\uD55C \uC2DC\uAC01\uC774 \uB418\uBA74 Pulse \uC138\uC158\uC744 \uC790\uB3D9\uC73C\uB85C \uC5FD\uB2C8\uB2E4. \uB193\uCCE4\uB2E4\uBA74 \uB2E4\uC74C\uC5D0 \uC571\uC744 \uC5F4 \uB54C \uC774\uC5B4\uC11C \uC81C\uC548\uD569\uB2C8\uB2E4.",
+  scheduleEnabledDesc: "Obsidian\uC774 \uCF1C\uC838 \uC788\uACE0 \uC124\uC815\uD55C \uC2DC\uAC01\uC774 \uB418\uBA74 Note Sweep \uC138\uC158\uC744 \uC790\uB3D9\uC73C\uB85C \uC5FD\uB2C8\uB2E4. \uB193\uCCE4\uB2E4\uBA74 \uB2E4\uC74C\uC5D0 \uC571\uC744 \uC5F4 \uB54C \uC774\uC5B4\uC11C \uC81C\uC548\uD569\uB2C8\uB2E4.",
   scheduleTime: "\uC138\uC158 \uC2DC\uAC01",
   scheduleTimeDesc: "\uB85C\uCEEC 24\uC2DC\uAC04 \uD615\uC2DD. \uC608: 21:00",
   scheduleAutoStart: "\uC138\uC158 \uCC3D \uC790\uB3D9\uC73C\uB85C \uC5F4\uAE30",
@@ -430,8 +430,8 @@ var ko = {
   signalDuplicate: "\uC911\uBCF5",
   signalAvoidance: "\uBBF8\uB8F8",
   rootFolder: "\uB8E8\uD2B8",
-  cmdStart: "Pulse \uC138\uC158 \uC2DC\uC791",
-  cmdOpenView: "Pulse \uBCF4\uAE30 \uC5F4\uAE30",
+  cmdStart: "Note Sweep \uC138\uC158 \uC2DC\uC791",
+  cmdOpenView: "Note Sweep \uBCF4\uAE30 \uC5F4\uAE30",
   cmdRescan: "vault \uC778\uB371\uC2A4 \uB2E4\uC2DC \uC2A4\uCE94",
   howToHeading: "\uC0AC\uC6A9\uBC95 (\uAC04\uB2E8)",
   howToBody: "1) \uD050 \uB2E4\uC2DC \uB9CC\uB4E4\uAE30 \u2192 2) \uCE74\uB4DC \uD074\uB9AD\uC73C\uB85C \uC5F4\uAE30 \xB7 \uC0AD\uC81C \xB7 Obsigravity(\uB178\uD2B8+\uCC44\uD305 \uC5F4\uAE30) \u2192 3) Obsigravity \uCC44\uD305\uC5D0 \uC694\uCCAD \uC785\uB825. \uB610\uB294 \uC138\uC158 \uC2DC\uC791\uC73C\uB85C \uD0C0\uC774\uBA38 \uC815\uB9AC."
@@ -958,7 +958,7 @@ var SessionModal = class extends import_obsidian3.Modal {
 
 // src/ui/pulse-view.ts
 var import_obsidian4 = require("obsidian");
-var PULSE_VIEW_TYPE = "vault-pulse-view";
+var PULSE_VIEW_TYPE = "note-sweep-view";
 var PulseView = class extends import_obsidian4.ItemView {
   constructor(leaf) {
     super(leaf);
@@ -974,7 +974,7 @@ var PulseView = class extends import_obsidian4.ItemView {
     return PULSE_VIEW_TYPE;
   }
   getDisplayText() {
-    return "Vault Pulse";
+    return "Note Sweep";
   }
   getIcon() {
     return "activity";
@@ -1097,7 +1097,7 @@ function getObsigravity(app) {
 function showObsigravityInstallGuide(locale) {
   new import_obsidian5.Notice(t(locale, "obsigravityMissing"), 12e3);
   console.info(
-    `[Vault Pulse] Install Obsigravity via BRAT:
+    `[Note Sweep] Install Obsigravity via BRAT:
 1) Install BRAT: ${BRAT_URL}
 2) Add plugin: reallygood83/obsigravity
 3) Repo: ${OBSIGRAVITY_REPO}`
@@ -1120,7 +1120,7 @@ async function openNoteInObsigravity(app, locale, notePath) {
       await og.pinNote(notePath.replace(/\\/g, "/"));
     }
   } catch (e) {
-    console.warn("[Vault Pulse] pinNote failed", e);
+    console.warn("[Note Sweep] pinNote failed", e);
   }
   try {
     if (typeof og.activateView === "function") {
@@ -1130,13 +1130,13 @@ async function openNoteInObsigravity(app, locale, notePath) {
     }
     new import_obsidian5.Notice(t(locale, "obsigravityOpened"), 6e3);
   } catch (e) {
-    console.error("[Vault Pulse] open Obsigravity failed", e);
+    console.error("[Note Sweep] open Obsigravity failed", e);
     new import_obsidian5.Notice(t(locale, "obsigravityUpdateFailed"), 8e3);
   }
 }
 
 // src/main.ts
-var VaultPulsePlugin = class extends import_obsidian6.Plugin {
+var NoteSweepPlugin = class extends import_obsidian6.Plugin {
   constructor() {
     super(...arguments);
     this.settings = {
@@ -1185,7 +1185,7 @@ var VaultPulsePlugin = class extends import_obsidian6.Plugin {
       });
       return view;
     });
-    this.addRibbonIcon("activity", "Vault Pulse", () => {
+    this.addRibbonIcon("activity", "Note Sweep", () => {
       if (this.active && !this.active.ended) {
         this.resumeSession();
       } else {

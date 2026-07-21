@@ -1,8 +1,8 @@
-# Vault Pulse (vault-pulse) — Product & Technical Spec
+# Note Sweep (note-sweep) — Product & Technical Spec
 
 **Version:** 0.1.0  
 **Author:** reallygood83  
-**Repo:** https://github.com/reallygood83/vault-pulse  
+**Repo:** https://github.com/reallygood83/note-sweep  
 **Target:** Obsidian Community Plugin submission  
 **Language:** TypeScript (Obsidian plugin API). **No Python. No AI required for MVP.**
 
@@ -16,7 +16,7 @@ what to organize. Graphs look impressive while knowledge freezes.
 
 ## 2. Solution (one sentence)
 
-**Vault Pulse is a local radar + 20-minute triage habit:** scan the vault with
+**Note Sweep is a local radar + 20-minute triage habit:** scan the vault with
 rule-based scores, recommend a small daily queue, and help users act
 (open / archive / snooze / skip) without auto-deleting or mass-refiling.
 
@@ -173,8 +173,8 @@ src/
 
 | Field | Requirement |
 |-------|-------------|
-| `id` | `vault-pulse` — lowercase, kebab-case, must match repo name, must not change after first release |
-| `name` | `Vault Pulse` — display name |
+| `id` | `note-sweep` — lowercase, kebab-case, must match repo name, must not change after first release |
+| `name` | `Note Sweep` — display name |
 | `version` | semver, no `v` prefix, must match the git release tag exactly |
 | `minAppVersion` | lowest Obsidian version using APIs we call (verify against actual API usage, don't guess) |
 | `description` | one sentence, no marketing fluff, no "the best/ultimate" language |
@@ -183,13 +183,9 @@ src/
 | `fundingUrl` | optional |
 | `isDesktopOnly` | **`false`** — MVP must run on mobile without crashing (see 9.4). Only set `true` if a real Node/Electron-only API is used |
 
-⚠️ **Naming risk:** Obsidian's plugin review guidelines discourage using the word
-"Obsidian" in a plugin's `id`/`name` (it reads as official/redundant and can be
-rejected or require a rename during review). Current id `vault-pulse` and repo
-name `vault-pulse` both contain it. Decide before submitting the review PR:
-keep as-is and accept possible reviewer pushback, or rename id/repo/display name
-(e.g. `vault-pulse`) before the first tagged release — **id cannot change after
-the plugin is accepted into the community list.**
+✅ **Naming:** id `note-sweep`, display name **Note Sweep**, repo
+`reallygood83/note-sweep`. Does not contain the word "Obsidian" (review-safe).
+**id cannot change after the plugin is accepted into the community list.**
 
 ### 9.2 `versions.json`
 
@@ -318,17 +314,15 @@ Update on every release; do not delete old entries.
 
 ## 13. Naming
 
-- Plugin display name: **Vault Pulse**  
-- Plugin id: **vault-pulse**  
-- Package name: **vault-pulse**
+- Plugin display name: **Note Sweep**  
+- Plugin id: **note-sweep**  
+- Package name: **note-sweep**  
+- Repo: **reallygood83/note-sweep**
 
-✅ DECIDED (Option B): id/repo/package are `vault-pulse`. Display name remains **Vault Pulse**. Former provisional id `vault-pulse` (0.1.0) is superseded. ⚠️ Historical note only — id/repo name containing "obsidian" may draw reviewer
-pushback. This is an open decision, not yet resolved — pick one before the
-first tagged release since the id is immutable after community-list
-acceptance:
-- **Option A:** keep `vault-pulse` everywhere, accept review risk.
-- **Option B:** rename id/repo/package to `vault-pulse` (display name
-  "Vault Pulse" stays either way) before first release.
+✅ DECIDED: rebranded from provisional name **Vault Pulse** / `vault-pulse`
+to **Note Sweep** / `note-sweep` (clearer product metaphor: sweep stale notes).
+Id/repo/package/display name are consistent. Safe for community review (no
+"obsidian" in id/name).
 
 ## 14. Implementation priority
 

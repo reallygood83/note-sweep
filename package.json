@@ -1,7 +1,7 @@
 {
-  "name": "vault-pulse",
+  "name": "note-sweep",
   "version": "0.3.3",
-  "description": "Local vault radar + daily timed triage for Obsidian. Korean/English UI. No AI.",
+  "description": "Local note radar + daily timed triage for Obsidian. Korean/English UI. No AI.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
@@ -13,7 +13,8 @@
     "obsidian-plugin",
     "pkm",
     "triage",
-    "vault"
+    "vault",
+    "sweep"
   ],
   "author": "reallygood83",
   "license": "MIT",

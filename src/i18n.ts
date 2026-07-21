@@ -3,7 +3,7 @@ export type PulseLocale = "en" | "ko";
 type Dict = Record<string, string>;
 
 const en: Dict = {
-  pluginName: "Vault Pulse",
+  pluginName: "Note Sweep",
   viewSubtitle: "Local radar for notes worth triaging. No AI. No network.",
   startSession: "Start session",
   rebuildQueue: "Rebuild queue",
@@ -11,7 +11,7 @@ const en: Dict = {
   emptyQueue:
     "No signals right now. Rescan after more notes age, or lower Stale days in settings.",
   score: "score",
-  sessionTitle: "Vault Pulse session",
+  sessionTitle: "Note Sweep session",
   remaining: "remaining",
   cardProgress: "Card {current} / {total} · processed {done}",
   queueComplete:
@@ -44,26 +44,26 @@ const en: Dict = {
   sessionHint:
     "Tip: Open a note to edit anytime. Closing × only hides this panel — it does NOT end the session. Use “End session” when finished.",
   sessionPaused:
-    "Pulse session paused ({time} left). Click the status bar “Pulse” to resume.",
-  statusBarActive: "Pulse {time}",
-  statusBarPaused: "Pulse · resume {time}",
-  timeUp: "Pulse session time is up.",
-  actionFailed: "Pulse action failed. See console.",
-  cmdResume: "Resume Pulse session",
-  scanning: "Vault Pulse: scanning vault…",
-  scanComplete: "Vault Pulse: scan complete.",
-  nothingToTriage: "Vault Pulse: nothing to triage right now.",
-  scheduledTime: "Vault Pulse: scheduled session starting.",
-  catchUp: "Vault Pulse: catch-up session available — starting now.",
+    "Note Sweep session paused ({time} left). Click the status bar “Sweep” to resume.",
+  statusBarActive: "Sweep {time}",
+  statusBarPaused: "Sweep · resume {time}",
+  timeUp: "Note Sweep session time is up.",
+  actionFailed: "Note Sweep action failed. See console.",
+  cmdResume: "Resume Note Sweep session",
+  scanning: "Note Sweep: scanning vault…",
+  scanComplete: "Note Sweep: scan complete.",
+  nothingToTriage: "Note Sweep: nothing to triage right now.",
+  scheduledTime: "Note Sweep: scheduled session starting.",
+  catchUp: "Note Sweep: catch-up session available — starting now.",
   catchUpManual:
-    "Vault Pulse: catch-up session available. Run “Start session”.",
+    "Note Sweep: catch-up session available. Run “Start session”.",
   archived: "Archived → {path}",
   sessionDone:
-    "Pulse done: {done}/{target} · open {opened} · archive {archived} · snooze {snoozed} · skip {skipped} · streak {streak}",
-  settingsTitle: "Vault Pulse",
+    "Sweep done: {done}/{target} · open {opened} · archive {archived} · snooze {snoozed} · skip {skipped} · streak {streak}",
+  settingsTitle: "Note Sweep",
   settingsIntro: "All processing is local. No AI. No network calls.",
   language: "Language",
-  languageDesc: "UI language for Vault Pulse (English / Korean).",
+  languageDesc: "UI language for Note Sweep (English / Korean).",
   staleDays: "Stale days",
   staleDaysDesc:
     "Notes not modified for at least this many days can be flagged stale.",
@@ -85,7 +85,7 @@ const en: Dict = {
   scheduleHeading: "Daily auto session",
   scheduleEnabled: "Enable daily auto session",
   scheduleEnabledDesc:
-    "When Obsidian is open at the set local time, start a Pulse session automatically. Catch-up on next launch if you missed it.",
+    "When Obsidian is open at the set local time, start a Note Sweep session automatically. Catch-up on next launch if you missed it.",
   scheduleTime: "Session time",
   scheduleTimeDesc: "Local 24h time, e.g. 21:00",
   scheduleAutoStart: "Auto-open session window",
@@ -102,8 +102,8 @@ const en: Dict = {
   signalDuplicate: "Duplicate",
   signalAvoidance: "Avoidance",
   rootFolder: "root",
-  cmdStart: "Start Pulse session",
-  cmdOpenView: "Open Pulse view",
+  cmdStart: "Start Note Sweep session",
+  cmdOpenView: "Open Note Sweep view",
   cmdRescan: "Rescan vault index",
   howToHeading: "How to use (simple)",
   howToBody:
@@ -111,7 +111,7 @@ const en: Dict = {
 };
 
 const ko: Dict = {
-  pluginName: "Vault Pulse",
+  pluginName: "Note Sweep",
   viewSubtitle:
     "손댈 만한 노트를 골라 주는 로컬 레이더입니다. AI 없음 · 네트워크 없음.",
   startSession: "세션 시작",
@@ -120,14 +120,14 @@ const ko: Dict = {
   emptyQueue:
     "지금 추천할 노트가 없습니다. 노트가 더 오래되거나, 설정에서 ‘방치 일수’를 낮춰 보세요.",
   score: "점수",
-  sessionTitle: "Vault Pulse 세션",
+  sessionTitle: "Note Sweep 세션",
   remaining: "남음",
   cardProgress: "카드 {current} / {total} · 처리 {done}",
   queueComplete:
     "큐를 모두 처리했습니다. 세션을 끝내거나 타이머가 끝날 때까지 기다려도 됩니다.",
   open: "열기",
   openTooltip:
-    "노트를 열어 수정합니다. 세션은 유지됩니다. 상태바의 Pulse를 누르면 돌아옵니다.",
+    "노트를 열어 수정합니다. 세션은 유지됩니다. 상태바의 Sweep을 누르면 돌아옵니다.",
   clickToOpen: "클릭하면 노트가 열립니다",
   delete: "삭제",
   deleteTooltip: "노트를 휴지통으로 보냅니다 (확인 후)",
@@ -155,26 +155,26 @@ const ko: Dict = {
   sessionHint:
     "팁: 「열기」로 노트를 수정하세요. × 로 닫아도 세션은 끝나지 않습니다. 끝낼 때만 「세션 종료」를 누르세요.",
   sessionPaused:
-    "Pulse 세션 일시 숨김 (남은 시간 {time}). 상태바의 “Pulse”를 눌러 이어서 하세요.",
-  statusBarActive: "Pulse {time}",
-  statusBarPaused: "Pulse · 이어하기 {time}",
-  timeUp: "Pulse 세션 시간이 끝났습니다.",
+    "Note Sweep 세션 일시 숨김 (남은 시간 {time}). 상태바의 “Sweep”을 눌러 이어서 하세요.",
+  statusBarActive: "Sweep {time}",
+  statusBarPaused: "Sweep · 이어하기 {time}",
+  timeUp: "Note Sweep 세션 시간이 끝났습니다.",
   actionFailed: "작업에 실패했습니다. 콘솔을 확인해 주세요.",
-  cmdResume: "Pulse 세션 이어하기",
-  scanning: "Vault Pulse: vault 스캔 중…",
-  scanComplete: "Vault Pulse: 스캔 완료.",
-  nothingToTriage: "Vault Pulse: 지금 정리할 노트가 없습니다.",
-  scheduledTime: "Vault Pulse: 예약 세션을 시작합니다.",
-  catchUp: "Vault Pulse: 놓친 세션을 지금 시작합니다.",
+  cmdResume: "Note Sweep 세션 이어하기",
+  scanning: "Note Sweep: vault 스캔 중…",
+  scanComplete: "Note Sweep: 스캔 완료.",
+  nothingToTriage: "Note Sweep: 지금 정리할 노트가 없습니다.",
+  scheduledTime: "Note Sweep: 예약 세션을 시작합니다.",
+  catchUp: "Note Sweep: 놓친 세션을 지금 시작합니다.",
   catchUpManual:
-    "Vault Pulse: 놓친 세션이 있습니다. 「세션 시작」을 눌러 주세요.",
+    "Note Sweep: 놓친 세션이 있습니다. 「세션 시작」을 눌러 주세요.",
   archived: "보관됨 → {path}",
   sessionDone:
     "세션 끝: {done}/{target} · 열기 {opened} · 보관 {archived} · 나중에 {snoozed} · 건너뜀 {skipped} · 연속 {streak}일",
-  settingsTitle: "Vault Pulse",
+  settingsTitle: "Note Sweep",
   settingsIntro: "모든 처리는 로컬에서만 합니다. AI 없음 · 네트워크 호출 없음.",
   language: "언어",
-  languageDesc: "Vault Pulse 화면 언어 (영어 / 한국어).",
+  languageDesc: "Note Sweep 화면 언어 (영어 / 한국어).",
   staleDays: "방치 일수",
   staleDaysDesc:
     "이 일수 이상 수정하지 않은 노트를 ‘오래됨(Stale)’으로 볼 수 있습니다.",
@@ -196,7 +196,7 @@ const ko: Dict = {
   scheduleHeading: "매일 자동 세션",
   scheduleEnabled: "매일 자동 세션 켜기",
   scheduleEnabledDesc:
-    "Obsidian이 켜져 있고 설정한 시각이 되면 Pulse 세션을 자동으로 엽니다. 놓쳤다면 다음에 앱을 열 때 이어서 제안합니다.",
+    "Obsidian이 켜져 있고 설정한 시각이 되면 Note Sweep 세션을 자동으로 엽니다. 놓쳤다면 다음에 앱을 열 때 이어서 제안합니다.",
   scheduleTime: "세션 시각",
   scheduleTimeDesc: "로컬 24시간 형식. 예: 21:00",
   scheduleAutoStart: "세션 창 자동으로 열기",
@@ -213,8 +213,8 @@ const ko: Dict = {
   signalDuplicate: "중복",
   signalAvoidance: "미룸",
   rootFolder: "루트",
-  cmdStart: "Pulse 세션 시작",
-  cmdOpenView: "Pulse 보기 열기",
+  cmdStart: "Note Sweep 세션 시작",
+  cmdOpenView: "Note Sweep 보기 열기",
   cmdRescan: "vault 인덱스 다시 스캔",
   howToHeading: "사용법 (간단)",
   howToBody:

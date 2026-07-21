@@ -1,12 +1,12 @@
 import { App, PluginSettingTab, Setting } from "obsidian";
 import { t, type PulseLocale } from "./i18n";
-import type VaultPulsePlugin from "./main";
+import type NoteSweepPlugin from "./main";
 import type { PulseSettings } from "./types";
 
 export class PulseSettingTab extends PluginSettingTab {
-  plugin: VaultPulsePlugin;
+  plugin: NoteSweepPlugin;
 
-  constructor(app: App, plugin: VaultPulsePlugin) {
+  constructor(app: App, plugin: NoteSweepPlugin) {
     super(app, plugin);
     this.plugin = plugin;
   }
